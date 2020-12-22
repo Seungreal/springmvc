@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+$('#home').click(e=>{location.href='${ctx}/'})
+        $('#facebook').click(e=>{location.href='${ctx}/transfer/sym/tea/index'})
+        $('#signup-btn').click(e=>{
+            e.preventDefault()
+            $.ajax({
+                url:'/teachers',
+                type:'POST',
+                data:JSON.stringify({
+                    name:$('#name').val(),
+                    password:$('#psw').val(),
+                    subject:$('#subject').val()
+                }),
+                dataType:'json',
+                contentType:'application/json',
+                success:d=>{
+                    if(d.message==='SUCCESS'){
+                        console.log('강사등록 성공')
+                    }
+                },
+                error:e=>{}
+            })
+        })

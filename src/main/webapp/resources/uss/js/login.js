@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+$('#home').click(e=>{location.href='${ctx}/'})
+        $('#signin-btn').click(e=>{
+            e.preventDefault()
+            $.ajax({
+                url:'/students/login',
+                type:'POST',
+                data:JSON.stringify({
+                    userid:$('#userid').val(),
+                    password:$('#psw').val(),
+                }),
+                dataType:'json',
+                contentType:'application/json',
+                success:d=>{
+                    if(d.message==='SUCCESS'){
+                        sessionStorage.setItem("userid",d.sessionUser.userid);
+                        location.href='${ctx}/move/uss/profile'
+                    }
+                },
+                error:e=>{}
+            })
+        })

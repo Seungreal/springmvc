@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" session="false"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -10,20 +10,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Coming Soon | Triangle</title>
-    <link href="<%=application.getContextPath()%>/assets/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%=application.getContextPath()%>/assets/resources/css/font-awesome.min.css" rel="stylesheet"> 
-    <link href="<%=application.getContextPath()%>/assets/resources/css/main.css" rel="stylesheet">
-    <link href="<%=application.getContextPath()%>/assets/resources/css/responsive.css" rel="stylesheet">
+    <link href="${cmm}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${cmm}/css/font-awesome.min.css" rel="stylesheet"> 
+    <link href="${cmm}/css/main.css" rel="stylesheet">
+    <link href="${cmm}/css/responsive.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
-        <script src="<%=application.getContextPath()%>/assets/resources/js/html5shiv.js"></script>
-        <script src="<%=application.getContextPath()%>/assets/resources/js/respond.min.js"></script>
+        <script src="${cmm}/js/html5shiv.js"></script>
+        <script src="${cmm}/js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="<%=application.getContextPath()%>/assets/resources/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=application.getContextPath()%>/assets/resources/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=application.getContextPath()%>/assets/resources/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%=application.getContextPath()%>/assets/resources/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<%=application.getContextPath()%>/assets/resources/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="${cmm}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${cmm}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${cmm}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${cmm}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="${cmm}/images/ico/apple-touch-icon-57-precomposed.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
@@ -100,7 +100,7 @@
 
 <body>
     <div class="logo-image">                                
-       <a id="home"href="#"><img class="img-responsive" src="<%=application.getContextPath()%>/assets/resources/images/logo.png" alt=""> </a> 
+       <a id="home"href="#"><img class="img-responsive" src="${cmm}/images/logo.png" alt=""> </a> 
     </div>
      <section id="coming-soon">        
          <div class="container">
@@ -171,34 +171,12 @@
     </section>
     
 
-    <script type="text/javascript" src="<%=application.getContextPath()%>/assets/resources/js/jquery.js"></script>
-    <script type="text/javascript" src="<%=application.getContextPath()%>/assets/resources/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<%=application.getContextPath()%>/assets/resources/js/wow.min.js"></script>
-    <script type="text/javascript" src="<%=application.getContextPath()%>/assets/resources/js/coundown-timer.js"></script>
-    <script type="text/javascript" src="<%=application.getContextPath()%>/assets/resources/js/main.js"></script>
-    <script>
-        $('#home').click(e=>{location.href='/'})
-        $('#signin-btn').click(e=>{
-            e.preventDefault()
-            $.ajax({
-                url:'/students/login',
-                type:'POST',
-                data:JSON.stringify({
-                    userid:$('#userid').val(),
-                    password:$('#psw').val(),
-                }),
-                dataType:'json',
-                contentType:'application/json',
-                success:d=>{
-                    if(d.message==='SUCCESS'){
-                        sessionStorage.setItem("userid",d.sessionUser.userid)
-                        location.href='/move/uss/profile'
-                    }
-                },
-                error:e=>{}
-            })
-        })
-    </script>
+    <script type="text/javascript" src="${cmm}/js/jquery.js"></script>
+    <script type="text/javascript" src="${cmm}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${cmm}/js/wow.min.js"></script>
+    <script type="text/javascript" src="${cmm}/js/coundown-timer.js"></script>
+    <script type="text/javascript" src="${cmm}/js/main.js"></script>
+    <script type="text/javascript" src="${uss}/js/login.js"></script>
     
 </body>
 </html>
