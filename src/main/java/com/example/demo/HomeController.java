@@ -26,14 +26,14 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@GetMapping("/")
-	public String home() {
+	public String index() {
 		String ctx = request.getContextPath();
 		session.setAttribute("ctx", ctx);
 		session.setAttribute("cmm", ctx+"/resources/cmm");
 		session.setAttribute("mgr", ctx+"/resources/mgr");
 		session.setAttribute("tea", ctx+"/resources/tea");
 		logger.info("Welcome home!");
-		return "home";
+		return "index";
 	}
 	
 	@GetMapping("/move/{dir}/{page}")
@@ -48,4 +48,9 @@ public class HomeController {
         return String.format("%s/%s/%s", dir,sub,page);
     }
     
+    @GetMapping("/home")
+    public String home() {
+    	logger.info("타일즈 성공");
+    	return "public";
+    }
 }

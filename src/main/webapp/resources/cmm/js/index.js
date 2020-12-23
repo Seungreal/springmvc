@@ -5,4 +5,5 @@ var init = ctx=>{
 	$('#teacher-register').click(e=>{location.href=`${ctx}/transfer/sym/tea/register`})
 	$('#sign-up').click(e=>{location.href=`${ctx}/move/uss/register`})
 	$('#sign-in').click(e=>{location.href=`${ctx}/move/uss/login`})
+	$('#linkedin').click(e=>{location.href=`${ctx}/home`})
 }
