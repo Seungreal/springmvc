@@ -8,3 +8,10 @@ import lombok.Data;
 public class ManagerDTO {
 	private String mgrNum,email,password;
 }
+/*
+create table managers(
+	mgr_num int primary key,
+	email varchar2(20),
+	password varchar2(20)
+);
+ */

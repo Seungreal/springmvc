@@ -113,4 +113,4 @@
             </div>
         </div>       
     </section>
-    <script></script>
+    <script>mgr.init()</script>
