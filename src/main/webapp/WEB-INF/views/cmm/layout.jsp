@@ -6,21 +6,25 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="head.jsp" />
+<style>
+table{1px solid black; width: 80%;}
+table tr {1px solid black}
+table tr td{1px solid black}
+</style>
 <body>
-	<header id="layout-header">
+<table>
+	<tr><td><header id="layout-header">
 		<tiles:insertAttribute name="header" />
-	</header>
-	<section>
-		<article id="layout-gnb">
+	</header></td></tr>
+	<tr><td><article id="layout-gnb">
 			<tiles:insertAttribute name="gnb" />
-		</article>
-		<article id="layout-container">
+		</article></td></tr>
+	<tr><td><article id="layout-container">
 			<tiles:insertAttribute name="container" />
-		</article>
-	</section>
-	<script></script>
-	<footer id="layout-footer">
+		</article></td></tr>
+	<tr><td><footer id="layout-footer">
 		<tiles:insertAttribute name="footer" />
-	</footer>
+	</footer></td></tr>
+</table>
 </body>
 </html>

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * Handles requests for the application home page.
  */
 @Controller
-@SessionAttributes({"ctx","cmm","mgr","tea"})
+@SessionAttributes({"ctx","cmm","mgr","tea","uss"})
 public class HomeController {
 	@Autowired HttpSession session;
 	@Autowired HttpServletRequest request;
@@ -32,20 +32,30 @@ public class HomeController {
 		session.setAttribute("cmm", ctx+"/resources/cmm");
 		session.setAttribute("mgr", ctx+"/resources/mgr");
 		session.setAttribute("tea", ctx+"/resources/tea");
+		session.setAttribute("uss", ctx+"/resources/uss");
 		logger.info("Welcome home!");
 		return "index";
 	}
 	
-	@GetMapping("/move/{dir}/{page}")
-    public String move(@PathVariable String dir,@PathVariable String page){
-        logger.info("이동한 페이지:"+dir+"/"+page);
-        return String.format("%s/%s", dir,page);
+	//uss 사용시
+	@GetMapping("/user/{page}")
+    public String user(@PathVariable String page){
+        logger.info("이동한 페이지:"+page);
+        return String.format("user:%s", page);
     }
     
-    @GetMapping("/transfer/{dir}/{sub}/{page}")
-    public String transfer(@PathVariable String dir,@PathVariable String sub,@PathVariable String page){
-        logger.info("이동한 페이지:"+dir+"/"+sub+"/"+page);
-        return String.format("%s/%s/%s", dir,sub,page);
+	//sym 사용시
+    @GetMapping("/admin/{dir}/{page}")
+    public String admin(@PathVariable String dir,@PathVariable String page){
+        logger.info("이동한 페이지:"+dir+"/"+page);
+        return String.format("admin:%s/%s", dir,page);
+    }
+    
+    //cop 사용시
+    @GetMapping("/content/{dir}/{page}")
+    public String content(@PathVariable String dir,@PathVariable String page){
+        logger.info("이동한 페이지:"+dir+"/"+page);
+        return String.format("content:%s/%s", dir,page);
     }
     
     @GetMapping("/home")
@@ -53,4 +63,5 @@ public class HomeController {
     	logger.info("타일즈 성공");
     	return "public";
     }
+   
 }

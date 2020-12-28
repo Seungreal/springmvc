@@ -13,7 +13,7 @@
     <link href="${cmm}/css/animate.min.css" rel="stylesheet"> 
     <link href="${cmm}/css/lightbox.css" rel="stylesheet"> 
 	<link href="${cmm}/css/main.css" rel="stylesheet">
-	<link href="${cmm}/responsive.css" rel="stylesheet">
+	<link href="${cmm}/css/responsive.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
 	    <script src="${cmm}/js/html5shiv.js"></script>
@@ -25,4 +25,22 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${cmm}/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="${cmm}/images/ico/apple-touch-icon-57-precomposed.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${cmm}/js/jquery.js"></script>
+	<script type="text/javascript" src="${cmm}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${cmm}/js/lightbox.min.js"></script>
+    <script type="text/javascript" src="${cmm}/js/wow.min.js"></script>
+    <script type="text/javascript" src="${cmm}/js/main.js"></script>
+    <script type="text/javascript" src="${cmm}/js/index.js"></script>
+    <script type="text/javascript" src="${cmm}/js/nvbar.js"></script>
+    <script defer type="text/javascript" src="${mgr}/js/index.js"></script>
+    <script defer type="text/javascript" src="${mgr}/js/register.js"></script>
+    <script defer type="text/javascript" src="${mgr}/js/student.js"></script>
+    <script defer type="text/javascript" src="${mgr}/js/teacher.js"></script>
+    <script defer type="text/javascript" src="${tea}/js/register.js"></script>
+    <script defer type="text/javascript" src="${uss}/js/register.js"></script>
+    <script defer type="text/javascript" src="${uss}/js/login.js"></script>
+    <script defer type="text/javascript" src="${uss}/js/profile.js"></script>
 </head>

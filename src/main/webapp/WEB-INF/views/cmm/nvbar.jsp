@@ -17,9 +17,9 @@
                 <li><a href="#">Coming Soon</a></li>
             </ul>
         </li>                  
-        <li class="dropdown"><a href="#">Blog <i class="fa fa-angle-down"></i></a>
+        <li id="bbs" class="dropdown"><a href="#">Blog <i class="fa fa-angle-down"></i></a>
             <ul role="menu" class="sub-menu">
-                <li><a href="#">Blog Default</a></li>
+                <li><a id="blog-default"href="#">Blog Default</a></li>
                 <li><a href="#">Timeline Blog</a></li>
                 <li><a href="#">2 Columns + Right Sidebar</a></li>
                 <li><a href="#">1 Column + Left Sidebar</a></li>
@@ -41,3 +41,4 @@
         <li><a id="teacher-register"href="#">Teacher</a></li>                    
     </ul>
 </div>
+<script>nvbar.init()</script>
