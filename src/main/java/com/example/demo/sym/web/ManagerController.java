@@ -3,8 +3,8 @@ package com.example.demo.sym.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.demo.sym.service.ManagerDTO;
 import com.example.demo.sym.service.ManagerService;
-import com.example.demo.sym.service.model.ManagerDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

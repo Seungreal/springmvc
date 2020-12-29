@@ -1,8 +1,8 @@
 package com.example.demo.cop.bbs.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public interface ArticleService {
+@Service
+public class ArticleService{
 
 }

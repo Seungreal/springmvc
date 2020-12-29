@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.demo.sym.service.TeacherDTO;
 import com.example.demo.sym.service.TeacherService;
-import com.example.demo.sym.service.model.TeacherDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

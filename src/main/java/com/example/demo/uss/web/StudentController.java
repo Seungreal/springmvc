@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.demo.uss.service.StudentDTO;
 import com.example.demo.uss.service.StudentService;
-import com.example.demo.uss.service.model.StudentDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
