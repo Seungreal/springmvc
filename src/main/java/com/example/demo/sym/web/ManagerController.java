@@ -1,8 +1,6 @@
 package com.example.demo.sym.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.example.demo.cmm.enm.Messenger;
 import com.example.demo.sym.service.ManagerDTO;
 import com.example.demo.sym.service.ManagerService;
 
@@ -20,11 +18,8 @@ public class ManagerController {
     @Autowired ManagerService managerService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @PostMapping("/")
-    public Map<?,?> register(@RequestBody ManagerDTO m){
-        var map = new HashMap<>();
+    public Messenger register(@RequestBody ManagerDTO m){
         logger.info("등록하려는 관리자정보:"+m.toString());
-        int result = managerService.register(m);
-        map.put("message", result==1?"SUCCESS":"FAILURE");
-        return map;
+        return (managerService.register(m)==1) ? Messenger.SUCCESS : Messenger.FAILURE;
     }
 }

@@ -1,5 +1,5 @@
-var cmm = {
-	init:ctx=>{
+var cmm = (()=>{
+	const init=ctx=>{
 		localStorage.setItem('ctx',`${ctx}`)
 		$('.move-home').click(e=>{location.href=`${ctx}/`})
 		$('#manager-register').click(e=>{location.href=`${ctx}/admin/mgr/register`})
@@ -11,7 +11,9 @@ var cmm = {
 		
 	}
 	
-}
+	return {init}
+	
+})()
 
 var service =  {
 	init:()=>{
