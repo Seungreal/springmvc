@@ -146,16 +146,16 @@ public class AppleController{
 		// 람다
 		// 오름차순 정렬
 		ls.sort((Apple o1, Apple o2) 
-				-> integer(string(o1.getWeight()))
-						.compareTo(integer(string(o2.getWeight()))));
+				-> integer.apply(string.apply(o1.getWeight()))
+						.compareTo(integer.apply(string.apply(o2.getWeight()))));
 		// 위 코드를 더 간략화 시킴. 단 import static java.util.Comparator.comparing; 주의 !!
 		// Comparator<Apple> app = Comparator.comparing((Apple a)-> a.getWeight());
 		ls.sort(comparing(Apple::getWeight));
 		for(Apple a : ls) print(a.toString());	
 		// 내림차순 정렬
 		ls.sort((Apple o1, Apple o2) 
-				-> integer(string(o1.getWeight()))
-						.compareTo(integer(string(o2.getWeight()))));
+				-> integer.apply(string.apply(o1.getWeight()))
+						.compareTo(integer.apply(string.apply(o2.getWeight()))));
 		// 위 코드를 더 간략화 시킴. 단 import static java.util.Comparator.comparing; 주의 !!
 		ls.sort(comparing(Apple::getWeight).reversed());
 		for(Apple a : ls) print(a.toString());	

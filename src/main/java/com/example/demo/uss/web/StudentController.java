@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.demo.cmm.enm.Messenger;
-import com.example.demo.uss.service.StudentDTO;
+import com.example.demo.uss.service.Student;
 import com.example.demo.uss.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
     @Autowired StudentService studentService;
     @PostMapping("")
-    public Messenger register(@RequestBody StudentDTO s){
+    public Messenger register(@RequestBody Student s){
         return studentService.register(s)==1?Messenger.SUCCESS:Messenger.FAILURE;
     }
     @PostMapping("/login")
-    public Map<?,?> login(@RequestBody StudentDTO s){
+    public Map<?,?> login(@RequestBody Student s){
         var map = new HashMap<>();
-        StudentDTO result = studentService.login(s);
+        Student result = studentService.login(s);
         map.put("message", result!=null?"SUCCESS":"FAILURE");
         map.put("sessionUser", result);
         return map;
     }
     @GetMapping("/{userid}")
-    public StudentDTO profile(@PathVariable String userid){
+    public Student profile(@PathVariable String userid){
         return studentService.detail(userid);
     }
     @GetMapping("")
@@ -43,11 +43,11 @@ public class StudentController {
         return studentService.list();
     }
     @PutMapping("")
-    public Messenger update(@RequestBody StudentDTO s){
+    public Messenger update(@RequestBody Student s){
         return studentService.update(s)==1?Messenger.SUCCESS:Messenger.FAILURE;
     }
     @DeleteMapping("")
-    public Messenger delete(@RequestBody StudentDTO s){
+    public Messenger delete(@RequestBody Student s){
         return studentService.delete(s)==1?Messenger.SUCCESS:Messenger.FAILURE;
     }
 }

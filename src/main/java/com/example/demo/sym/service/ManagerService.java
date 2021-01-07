@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class ManagerService {
 	@Autowired ManagerMapper managerMapper;
 
-	public int register(ManagerDTO m) {
+	public int register(Manager m) {
 		return managerMapper.insert(m);
 	}
     

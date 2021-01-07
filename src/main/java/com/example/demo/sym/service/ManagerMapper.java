@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ManagerMapper {
 
-	public int insert(ManagerDTO m);
+	public int insert(Manager m);
+
+	public Manager access(Manager m);
     
 }

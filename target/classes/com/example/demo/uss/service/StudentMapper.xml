@@ -2,5 +2,30 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.uss.service.StudentMapper">
-
+	<insert id="insert" parameterType="com.example.demo.uss.service.Student">
+        insert into students(userid,password,name,ssn,reg_date,subject)
+        values(#{userid},#{password},#{name},#{ssn},#{regDate},#{subject})
+    </insert>
+    <select id="login" parameterType="com.example.demo.uss.service.Student"
+                        resultType="com.example.demo.uss.service.Student">
+        select * from students
+        where userid like #{userid} and password = #{password}
+    </select>
+    <select id="selectById" parameterType="string"
+                        resultType="com.example.demo.uss.service.Student">
+        select stu_num stuNum, userid, password, name, ssn, reg_date regDate, subject, profile_img profileImg from students
+        where userid like #{value}
+    </select>
+    <select id="selectAll" resultType="com.example.demo.uss.service.Student">
+        select stu_num stuNum, userid, password, name, ssn, reg_date regDate, subject, profile_img profileImg from students
+    </select>
+    <update id="update" parameterType="com.example.demo.uss.service.Student">
+        update students
+        set subject = #{subject}
+        where stu_num like #{stuNum}
+    </update>
+    <delete id="delete" parameterType="com.example.demo.uss.service.Student">
+        delete from students
+        where stu_num like #{stuNum}
+    </delete>
 </mapper>

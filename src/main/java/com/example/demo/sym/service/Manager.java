@@ -1,4 +1,4 @@
-package com.example.demo.cop.bbs.service;
+package com.example.demo.sym.service;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -8,16 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
-public class Article {
-	private String artNum,title,content,count,writerNum;
+public class Manager {
+	private String mgrNum,email,password,name,profileImg;
 }
-
 /*
-create table articles(
-	art_num int primary key,
-	title varchar2(20),
-	content varchar2(100),
-	count int default 0,
-	writer_num int
+create table managers(
+	mgr_num int primary key,
+	email varchar2(20),
+	password varchar2(20)
 );
  */

@@ -11,7 +11,7 @@ public class TeacherService {
 	@Autowired
     TeacherMapper teacherMapper;
 
-    public int register(TeacherDTO t) {
+    public int register(Teacher t) {
         return teacherMapper.insert(t);
     }
 
@@ -19,15 +19,15 @@ public class TeacherService {
         return teacherMapper.selectAll();
     }
 
-    public TeacherDTO detail(String name) {
+    public Teacher detail(String name) {
         return teacherMapper.select(name);
     }
 
-    public int update(TeacherDTO t) {
+    public int update(Teacher t) {
         return teacherMapper.update(t);
     }
 
-    public int delete(TeacherDTO t) {
+    public int delete(Teacher t) {
         return teacherMapper.delete(t);
     }
 }

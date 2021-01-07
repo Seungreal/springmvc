@@ -28,7 +28,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String index() {
 		String ctx = request.getContextPath();
-		session.setAttribute("ctx", ctx);
+		session.setAttribute("demo", ctx);
 		session.setAttribute("cmm", ctx+"/resources/cmm");
 		session.setAttribute("mgr", ctx+"/resources/sym/mgr");
 		session.setAttribute("tea", ctx+"/resources/sym/tea");

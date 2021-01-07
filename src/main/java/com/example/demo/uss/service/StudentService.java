@@ -1,24 +1,35 @@
 package com.example.demo.uss.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.cmm.enm.Sql;
+import com.example.demo.cmm.util.DummyGenerator;
+
 @Service
 public class StudentService{
+	@Autowired DummyGenerator dummy;
     @Autowired
     StudentMapper studentMapper;
 
-    public int register(StudentDTO s) {
+    public int register(Student s) {
         return studentMapper.insert(s);
     }
+    
+    public void insertMany(int count) {
+    	for(int i=0;i<count;i++) {
+    		studentMapper.insert(dummy.makeStudent());
+    	}
+    }
 
-    public StudentDTO login(StudentDTO s) {
+    public Student login(Student s) {
         return studentMapper.login(s);
     }
 
-    public StudentDTO detail(String userid) {
+    public Student detail(String userid) {
         return studentMapper.selectById(userid);
     }
 
@@ -26,12 +37,17 @@ public class StudentService{
         return studentMapper.selectAll();
     }
 
-    public int update(StudentDTO s) {
+    public int update(Student s) {
         return studentMapper.update(s);
     }
 
-    public int delete(StudentDTO s) {
+    public int delete(Student s) {
         return studentMapper.delete(s);
     }
     
+    public void truncate() {
+    	var map = new HashMap<String,String>();
+    	map.put("TRUNCATE_STUDENTS", Sql.TRUNCATE_STUDENTS.toString());
+    	studentMapper.truncate(map);
+    }
 }
