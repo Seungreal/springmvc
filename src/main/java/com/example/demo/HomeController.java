@@ -28,7 +28,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String index() {
 		String ctx = request.getContextPath();
-		session.setAttribute("demo", ctx);
+		session.setAttribute("ctx", ctx);
 		session.setAttribute("cmm", ctx+"/resources/cmm");
 		session.setAttribute("mgr", ctx+"/resources/sym/mgr");
 		session.setAttribute("tea", ctx+"/resources/sym/tea");
@@ -49,6 +49,11 @@ public class HomeController {
     public String admin(@PathVariable String dir,@PathVariable String page){
         logger.info("이동한 페이지:"+dir+"/"+page);
         return String.format("admin:%s/%s", dir,page);
+    }
+    @GetMapping("/mgr/{page}")
+    public String mgr(@PathVariable String page){
+        logger.info("이동한 페이지:"+page);
+        return String.format("mgr:%s",page);
     }
     
     //cop 사용시

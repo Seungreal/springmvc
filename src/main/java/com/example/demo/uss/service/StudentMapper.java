@@ -14,11 +14,14 @@ public interface StudentMapper {
 
 	public Student selectById(String userid);
 
-	public List<Student> selectAll();
+	public List<Student> selectAll(HashMap<Object, Object> map);
 
 	public int update(Student s);
 
 	public int delete(Student s);
     
 	public void truncate(HashMap<String, String> map);
+
+	public int count(HashMap<String, String> map);
+
 }

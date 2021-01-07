@@ -27,7 +27,7 @@ public class ManagerController {
     
     @PostMapping("/access")
     public Manager access(@RequestBody Manager m) {
-    	logger.info("컨트롤러 진입");
+    	logger.info("로그인하려는 관리자정보:"+m.toString());
     	return managerMapper.access(m);
     }
 }

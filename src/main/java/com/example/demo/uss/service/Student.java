@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Student{
-    private String stuNum,userid,password,name,ssn,gender,regDate,subject,profileImg;
+    private String stuNum,userid,password,name,birthday,gender,regDate,subject,profileImg;
 }
 
 /*
