@@ -16,9 +16,14 @@
         select stu_num stuNum, userid, password, name, ssn, reg_date regDate, subject, profile_img profileImg from students
         where userid like #{value}
     </select>
-    <select id="selectAll" parameterType="hashmap"
+    <select id="selectAll" parameterType="com.example.demo.cmm.util.Pagination"
     						resultType="com.example.demo.uss.service.Student">
-        ${SELECT_ALL_STUDENTS}
+        select stu_num stuNum, userid, name, birthday, gender, reg_date regDate, subject, profile_img profileImg
+        from ${tname} order by stu_num desc limit ${startRow},${pageSize};
+    </select>
+    <select id="list" resultType="com.example.demo.uss.service.Student">
+        select stu_num stuNum, userid, password, name, birthday, gender, reg_date regDate, subject, profile_img profileImg
+        from students
     </select>
     <update id="update" parameterType="com.example.demo.uss.service.Student">
         update students

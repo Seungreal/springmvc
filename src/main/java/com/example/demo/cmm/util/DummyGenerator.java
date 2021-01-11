@@ -124,7 +124,7 @@ public class DummyGenerator {
 				,makeEmail(),Path.DEFAULT_PROFILE.toString());
 	}
 	public Student makeStudent() {
-		return new Student("",makeUserid(),"1",makeUsername(),makeBirthday(),makeGender()
+		return new Student(0,makeUserid(),"1",makeUsername(),makeBirthday(),makeGender()
 				,makeRegdate(),makeSubject(),Path.DEFAULT_PROFILE.toString());
 	}
 }

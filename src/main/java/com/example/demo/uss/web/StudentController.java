@@ -1,11 +1,16 @@
 package com.example.demo.uss.web;
 
+import static com.example.demo.cmm.util.Util.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.example.demo.HomeController;
 import com.example.demo.cmm.enm.Messenger;
+import com.example.demo.cmm.enm.Table;
+import com.example.demo.cmm.service.CommonMapper;
+import com.example.demo.cmm.util.Pagination;
 import com.example.demo.uss.service.Student;
 import com.example.demo.uss.service.StudentMapper;
 import com.example.demo.uss.service.StudentService;
@@ -28,6 +33,8 @@ public class StudentController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     @Autowired StudentService studentService;
     @Autowired StudentMapper studentMapper;
+    @Autowired CommonMapper commonMapper;
+    @Autowired Pagination page;
     @PostMapping("")
     public Messenger register(@RequestBody Student s){
         return studentService.register(s)==1?Messenger.SUCCESS:Messenger.FAILURE;
@@ -47,15 +54,24 @@ public class StudentController {
     }
     @GetMapping("/count")
     public String count(){
-    	return String.valueOf(studentService.count());
+    	return String.valueOf(commonMapper.count(Table.STUDENTS.toString()));
     }
     @GetMapping("/{userid}")
     public Student profile(@PathVariable String userid){
         return studentService.detail(userid);
     }
-    @GetMapping("")
-    public List<?> list(){
-        return studentService.selectAll();
+    @GetMapping("/page/{pageSize}/{pageNum}")
+    public Map<?,?> list(@PathVariable String pageSize,@PathVariable String pageNum){
+        var map = new HashMap<>();
+        var page = new Pagination(
+				Table.STUDENTS.toString(), 
+				integer.apply(pageSize), 
+				integer.apply(pageNum),
+				commonMapper.count(Table.STUDENTS.toString()));
+        map.put("list",studentService.list(page));
+        map.put("page", page);
+        System.out.println(page);
+    	return map;
     }
     @PutMapping("")
     public Messenger update(@RequestBody Student s){
@@ -70,9 +86,9 @@ public class StudentController {
     	studentService.truncate();
     	return studentService.count()==0?Messenger.SUCCESS:Messenger.FAILURE;
     }
-    @GetMapping("/find-by-gender/{gender}")
+    /*@GetMapping("/find-by-gender/{gender}")
     public List<Student> findByGender(@PathVariable String gender) {
     	logger.info(String.format("find by %s", gender));
     	return studentService.selectByGender(gender);
-    }
+    }*/
 }

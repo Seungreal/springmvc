@@ -11,10 +11,14 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.cmm.service.CommonMapper;
 
 @Component
 public class Util {
+	@Autowired CommonMapper mapper;
 	public static void print(String s) {
 		Consumer<String> c = System.out::println;
 		c.accept(s);
@@ -29,4 +33,5 @@ public class Util {
     public static Supplier<LocalTime> time = LocalTime::now;
     public static BiFunction<String,String,File> mkdir = File::new;
     public static BiFunction<File,String,File> mkfile = File::new;
+    
 }

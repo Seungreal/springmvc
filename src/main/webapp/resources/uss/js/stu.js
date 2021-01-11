@@ -18,7 +18,7 @@ stu.truncate = (x)=>{
 })
 }
 stu.list = x=>{
-	$.getJSON(`${x}/students`,(d)=>{
+	$.getJSON(`${x.ctx}/students/page/${x.pageSize}/${x.pageNum}`,(d)=>{
 		$(`<h3/>`)
 		.attr({id: `title`})
 		.text(`학생목록`)
@@ -33,7 +33,7 @@ stu.list = x=>{
 			$(`<th>${j}</th>`).css({backgroundColor: `gray`})
 			.appendTo(`#tr_1`)
 		})
-		$.each(d, function(i, j){
+		$.each(d.list, function(i, j){
 			$(`<tr><td>${j.stuNum}</td>
 		   	    		<td>${j.userid}</td>
 		   	    		<td>${j.name}</td>
@@ -48,17 +48,46 @@ stu.list = x=>{
 		.addClass(`pagination`)
 		.attr({id:`stu-page`})
 		.appendTo(`#mgr-data-mgt-stu`)
-		const arr2 = ['<<','1','2','3','4','5','6','>>']
-		$.each(arr2,(i,j)=>{
+		const page = d.page
+		function* range(start,end){
+			yield start;
+			if(start === end) return;
+			yield* range(start+1,end);
+		}
+		if(page.existPrev){
 			$(`<a/>`)
 			.attr({href:`#`})
+			.text(`<<`)
+			.appendTo(`#stu-page`)
+			.click(e=>{
+				e.preventDefault()
+				$(`#mgr-data-mgt-stu`).empty()
+				stu.list({ctx:`${x.ctx}`,pageSize: '10',pageNum:page.prevBlock})
+			})
+		}
+		$.each([...range(page.startPage,page.endPage)],(i,j)=>{
+			$(`<a/>`)
+			.attr({href:`#`})
+			.css({backgroundColor:j!=page.pageNum?'white':'yellow'})
 			.text(j)
 			.appendTo(`#stu-page`)
 			.click(e=>{
 				e.preventDefault()
-				alert(j)
+				$(`#mgr-data-mgt-stu`).empty()
+				stu.list({ctx:`${x.ctx}`,pageSize: '10',pageNum:j})
 			})
 		})
+		if(page.existNext){
+			$(`<a/>`)
+			.attr({href:`#`})
+			.text(`>>`)
+			.appendTo(`#stu-page`)
+			.click(e=>{
+				e.preventDefault()
+				$(`#mgr-data-mgt-stu`).empty()
+				stu.list({ctx:`${x.ctx}`,pageSize: '10',pageNum:page.nextBlock})
+			})
+		}
 		
 	})
 }

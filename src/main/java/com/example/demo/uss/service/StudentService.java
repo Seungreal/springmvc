@@ -2,14 +2,15 @@ package com.example.demo.uss.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
+import static java.util.Comparator.comparing;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.cmm.enm.Sql;
 import com.example.demo.cmm.util.DummyGenerator;
+import com.example.demo.cmm.util.Pagination;
 
 @Service
 public class StudentService{
@@ -53,7 +54,14 @@ public class StudentService{
     	map.put("COUNT_STUDENTS",Sql.COUNT.toString()+"students");
     	return studentMapper.count(map);
     }
-    public List<Student> selectAll(){
+    public List<Student> list(Pagination page){
+    	return studentMapper.list().stream()
+    			.sorted(comparing(Student::getStuNum).reversed())
+    			.skip(page.getStartRow()-1)
+    			.limit(page.getPageSize())
+    			.collect(toList());
+    }
+    /*public List<Student> selectAll(){
     	var map = new HashMap<>();
     	map.put("SELECT_ALL_STUDENTS",Sql.SELECT_ALL_STUDENTS.toString());
     	return studentMapper.selectAll(map);
@@ -62,5 +70,5 @@ public class StudentService{
     	return selectAll().stream()
     			
     			.collect(toList());
-    }
+    }*/
 }

@@ -56,7 +56,7 @@
 <script>
 stu.count(`${ctx}`)
 
-stu.list(`${ctx}`)
+stu.list({ctx:`${ctx}`,pageSize: '10',pageNum:'1'})
 
 stu.truncate(`${ctx}`)
 
