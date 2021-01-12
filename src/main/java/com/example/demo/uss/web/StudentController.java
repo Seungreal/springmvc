@@ -11,6 +11,11 @@ import com.example.demo.cmm.enm.Messenger;
 import com.example.demo.cmm.enm.Table;
 import com.example.demo.cmm.service.CommonMapper;
 import com.example.demo.cmm.util.Pagination;
+import com.example.demo.sts.service.GradeService;
+import com.example.demo.sts.service.SubjectMapper;
+import com.example.demo.sts.service.SubjectService;
+import com.example.demo.sym.service.TeacherMapper;
+import com.example.demo.sym.service.TeacherService;
 import com.example.demo.uss.service.Student;
 import com.example.demo.uss.service.StudentMapper;
 import com.example.demo.uss.service.StudentService;
@@ -31,7 +36,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/students")
 public class StudentController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-    @Autowired StudentService studentService;
+    @Autowired GradeService gradeService;
+	@Autowired StudentService studentService;
+	@Autowired SubjectService subjectService;
+	@Autowired TeacherService teacherService;
     @Autowired StudentMapper studentMapper;
     @Autowired CommonMapper commonMapper;
     @Autowired Pagination page;
@@ -42,6 +50,9 @@ public class StudentController {
     @GetMapping("/insert-many/{count}")
     public String insertMany(@PathVariable String count) {
     	studentService.insertMany(Integer.parseInt(count));
+    	gradeService.insertMany(Integer.parseInt(count));
+    	subjectService.insertMany(5);
+    	teacherService.insertMany(5);
     	return String.valueOf(studentService.count());
     }
     @PostMapping("/login")
@@ -70,7 +81,6 @@ public class StudentController {
 				commonMapper.count(Table.STUDENTS.toString()));
         map.put("list",studentService.list(page));
         map.put("page", page);
-        System.out.println(page);
     	return map;
     }
     @PutMapping("")

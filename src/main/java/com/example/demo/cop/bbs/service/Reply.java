@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Reply {
-	public String replyNum,content,artNum;
+	public String repNum,content,artNum;
 }
 /*
 create table replys(

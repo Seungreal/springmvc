@@ -9,7 +9,14 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Grade {
-	private String gradeNum, subject, score, grade, stuNum;
+	private int grdNum,stuNum,score;
+	private String subject, grade, examDate, passExam;
+	
+	public Grade(String subject,String examDate,int score) {
+		this.subject=subject;
+		this.examDate=examDate;
+		this.score=score;
+	}
 }
 /*
 create table grades(

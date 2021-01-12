@@ -46,7 +46,7 @@ public class StudentService{
     
     public void truncate() {
     	var map = new HashMap<String,String>();
-    	map.put("TRUNCATE_STUDENTS", Sql.TRUNCATE_STUDENTS.toString());
+    	map.put("TRUNCATE_STUDENTS", Sql.TRUNCATE.toString()+"students");
     	studentMapper.truncate(map);
     }
     public int count() {
@@ -61,14 +61,15 @@ public class StudentService{
     			.limit(page.getPageSize())
     			.collect(toList());
     }
-    /*public List<Student> selectAll(){
-    	var map = new HashMap<>();
-    	map.put("SELECT_ALL_STUDENTS",Sql.SELECT_ALL_STUDENTS.toString());
-    	return studentMapper.selectAll(map);
-    }
-   public List<Student> selectByGender(String Gender){
+    /*public List<Student> selectByGender(String Gender){
     	return selectAll().stream()
     			
     			.collect(toList());
     }*/
+    public List<Student> listByBirthday(){
+    	return studentMapper.list().stream()
+    			.filter(x->(x.getBirthday().compareTo("1995"))>0)
+    			.sorted(comparing(Student::getStuNum).reversed())
+    			.collect(toList());
+    }
 }

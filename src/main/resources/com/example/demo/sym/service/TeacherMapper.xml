@@ -3,8 +3,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.sym.service.TeacherMapper">
 	<insert id="insert" parameterType="com.example.demo.sym.service.Teacher">
-        insert into teachers(name,password,subject) 
-        values(#{name},#{password},#{subject})
+        insert into teachers(name,password,subject,email,profile_img) 
+        values(#{name},#{password},#{subject},#{email},#{profileImg})
     </insert>
     <select id="access" parameterType="com.example.demo.sym.service.Teacher"
 						resultType="com.example.demo.sym.service.Teacher">

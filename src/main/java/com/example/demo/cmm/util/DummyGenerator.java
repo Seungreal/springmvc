@@ -9,17 +9,22 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
 import com.example.demo.cmm.enm.Path;
+import com.example.demo.sts.service.Grade;
 import com.example.demo.sym.service.Manager;
 import com.example.demo.sym.service.Teacher;
 import com.example.demo.uss.service.Student;
 
 @Component("dummy")
 public class DummyGenerator {
+	/*******************************
+	 * Student Dummy Date Generator
+	 *******************************/
 	/*1970~2000 연도*/
 	public int makeYear(int from,int to) {
 		return rangeRandom.apply(from,to);
@@ -120,11 +125,25 @@ public class DummyGenerator {
 	}
 	
 	public Teacher makeTeacher() {
-		return new Teacher("",makeUsername(),"1",makeSubject()
+		return new Teacher("",makeUsername(),"1",""
 				,makeEmail(),Path.DEFAULT_PROFILE.toString());
 	}
 	public Student makeStudent() {
 		return new Student(0,makeUserid(),"1",makeUsername(),makeBirthday(),makeGender()
 				,makeRegdate(),makeSubject(),Path.DEFAULT_PROFILE.toString());
+	}
+	/*******************************
+	 * Grade Dummy Date Generator
+	 *******************************/
+	public List<Integer> makeScore(){
+		return Stream.generate(()->(int)(Math.random()*(100)))
+				.limit(100)
+				.collect(toList());
+	}
+	public String makeExamdate() {
+		return "2020-11-30";
+	}
+	public Grade makeGrade() {
+		return new Grade(makeSubject(),makeExamdate(),makeScore().get(0));
 	}
 }

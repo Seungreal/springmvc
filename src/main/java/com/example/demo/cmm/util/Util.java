@@ -27,6 +27,7 @@ public class Util {
     public static Function<Object,String> string = String::valueOf;
     public static BiPredicate<String,String> equals = String::equals;
     public static BiFunction<Integer,Integer,Integer> rangeRandom = (t,u)->(int)(Math.random()*(u-t))+t;
+    public static Supplier<Integer> scoreRandom = ()->(int)(Math.random()*(100));
     public static Function<Integer,int[]> arr = int[]::new;
     public static Supplier<List<Object>> arrayList = ArrayList::new;
     public static Supplier<LocalDate> date = LocalDate::now;
