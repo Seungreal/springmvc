@@ -25,7 +25,6 @@ public class TeacherService {
     	Teacher t = null;
     	for(int i=0;i<count;i++) {
     		t=dummy.makeTeacher();
-    		t.setSubject(l.get(i));
     		teacherMapper.insert(t);
     	}
     }

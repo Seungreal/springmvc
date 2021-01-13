@@ -56,6 +56,11 @@ public class HomeController {
         logger.info("이동한 페이지:"+page);
         return String.format("mgr:%s",page);
     }
+    @GetMapping("/tea/{page}")
+    public String tea(@PathVariable String page){
+        logger.info("이동한 페이지:"+page);
+        return String.format("tea:%s",page);
+    }
     
     //cop 사용시
     @GetMapping("/content/{dir}/{page}")

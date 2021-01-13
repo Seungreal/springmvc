@@ -43,7 +43,8 @@
         <div class="panel-footer">
           <h3>$29</h3>
           <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
+          <button id="tea-join-btn"class="btn btn-lg">Sign Up</button>
+          <button id="tea-login-btn"class="btn btn-lg">Sign In</button>
         </div>
       </div>      
     </div>       
@@ -71,7 +72,9 @@
 </div>
 <script>
 $('#mgr-login-btn').click(function(){
-	alert(`${ctx}`)
 	location.href=`admin/mgr/access`
+})
+$('#tea-login-btn').click(function(){
+	location.href=`admin/tea/access`
 })
 </script>

@@ -131,7 +131,7 @@ public class DummyGenerator {
 	}
 	
 	public Teacher makeTeacher() {
-		return new Teacher("",makeUsername(),"1",""
+		return new Teacher(0,makeSubNum(),makeUsername(),"1"
 				,makeEmail(),Path.DEFAULT_PROFILE.toString());
 	}
 	public Student makeStudent() {

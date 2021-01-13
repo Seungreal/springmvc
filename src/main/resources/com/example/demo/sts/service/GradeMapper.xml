@@ -48,29 +48,32 @@
 			(#{i.score}, #{i.grade}, #{i.examDate},#{i.stuNum},#{i.sub_num})
 		</foreach>
 	</insert>
-	<select id="selectJoinAll" resultMap="gradeMap">
-		select g.grade_num gradeNum,
-				g.score score,
-				g.grade grade,
-				g.exam_date examDate,
-				j.sub_num subNum,
+	<select id="selectJoinAll" resultMap="gradeMap" parameterType="string">
+		select a.*,
 				t.tea_num teaNum,
-				j.description description,
+				t.name teaName,
 				t.password teaPassword,
-				t.profile_img teaProfileImg,
-				s.userid stuUserid,
-				s.password stuPassword,
-				s.name stuName,
-				s.birthday stuBirthday,
-				s.gender gender,
-				s.reg_date regDate,
-				s.profile_img
-		from students s
-			join teachers t
-				using (subject)
-			join subjects j
-				using (subject)
-			join grades g
-				using (stu_num)
+				t.profile_img teaProfileImg
+		from (select g.grd_num grdNum, 
+					g.score score,
+					g.grade grade,
+					g.exam_date examDate,
+					g.pass_exam passExam,
+					j.sub_num sub_num,
+					j.description description,
+					s.userid userid,
+					s.password stuPassword,
+					s.name stuName,
+					s.birthday birthday,
+					s.gender gender,
+					s.reg_date regDate,
+					s.profile_img stuProfileImg,
+					s.stu_num stuNum
+			from grades g
+				join subjects j using (sub_num)
+				join students s using (stu_num)) a
+				join teachers t
+					using (sub_num)
+		where a.examDate like #{value}
 	</select>
 </mapper>

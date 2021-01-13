@@ -33,7 +33,6 @@ public enum Sql {
 			query="create table teachers(tea_num int primary key auto_increment,"
 					+ "name varchar(20),"
 					+ "password varchar(20),"
-					+ "subject varchar(20),"
 					+ "email varchar(20),"
 					+ "profile_img text,"
 					+ "sub_num int,"
