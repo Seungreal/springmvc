@@ -37,11 +37,15 @@
 		<result property="regDate" column="regDate"/>
 		<result property="stuProfileImg" column="stuProfileImg"/>
 	</resultMap>
+	<insert id="insert" parameterType="com.example.demo.sts.service.Grade">
+		insert into grades(score,grade, exam_date,stu_num,sub_num)
+		values (#{score}, #{grade}, #{examDate},#{stuNum},#{sub_num})
+	</insert>
 	<insert id="insertMany" parameterType="list">
-		insert into grades(subject, score, grade, exam_date, stu_num)
+		insert into grades(score,grade, exam_date,stu_num,sub_num)
 		values
 		<foreach item="i" collection="list" separator=",">
-			(#{i.subject}, #{i.score}, #{i.grade}, #{i.examDate}, #{i.stuNum})
+			(#{i.score}, #{i.grade}, #{i.examDate},#{i.stuNum},#{i.sub_num})
 		</foreach>
 	</insert>
 	<select id="selectJoinAll" resultMap="gradeMap">

@@ -8,12 +8,14 @@ import java.util.Map;
 
 import com.example.demo.HomeController;
 import com.example.demo.cmm.enm.Messenger;
+import com.example.demo.cmm.enm.Sql;
 import com.example.demo.cmm.enm.Table;
 import com.example.demo.cmm.service.CommonMapper;
 import com.example.demo.cmm.util.Pagination;
 import com.example.demo.sts.service.GradeService;
 import com.example.demo.sts.service.SubjectMapper;
 import com.example.demo.sts.service.SubjectService;
+import com.example.demo.sym.service.ManagerService;
 import com.example.demo.sym.service.TeacherMapper;
 import com.example.demo.sym.service.TeacherService;
 import com.example.demo.uss.service.Student;
@@ -40,6 +42,7 @@ public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired SubjectService subjectService;
 	@Autowired TeacherService teacherService;
+	@Autowired ManagerService managerService;
     @Autowired StudentMapper studentMapper;
     @Autowired CommonMapper commonMapper;
     @Autowired Pagination page;
@@ -49,10 +52,11 @@ public class StudentController {
     }
     @GetMapping("/insert-many/{count}")
     public String insertMany(@PathVariable String count) {
-    	studentService.insertMany(Integer.parseInt(count));
-    	gradeService.insertMany(Integer.parseInt(count));
+    	managerService.insertMany(1);
     	subjectService.insertMany(5);
+    	studentService.insertMany(Integer.parseInt(count));
     	teacherService.insertMany(5);
+    	//gradeService.insertMany(Integer.parseInt(count));
     	return String.valueOf(studentService.count());
     }
     @PostMapping("/login")
@@ -65,7 +69,9 @@ public class StudentController {
     }
     @GetMapping("/count")
     public String count(){
-    	return String.valueOf(commonMapper.count(Table.STUDENTS.toString()));
+    	var map = new HashMap<>();
+        map.put("TOTAL_COUNT",Sql.TOTAL_COUNT.toString()+Table.STUDENTS.toString());
+    	return String.valueOf(commonMapper.totalCount(map));
     }
     @GetMapping("/{userid}")
     public Student profile(@PathVariable String userid){
@@ -74,11 +80,12 @@ public class StudentController {
     @GetMapping("/page/{pageSize}/{pageNum}")
     public Map<?,?> list(@PathVariable String pageSize,@PathVariable String pageNum){
         var map = new HashMap<>();
+        map.put("TOTAL_COUNT",Sql.TOTAL_COUNT.toString()+Table.STUDENTS.toString());
         var page = new Pagination(
 				Table.STUDENTS.toString(), 
 				integer.apply(pageSize), 
 				integer.apply(pageNum),
-				commonMapper.count(Table.STUDENTS.toString()));
+				commonMapper.totalCount(map));
         map.put("list",studentService.list(page));
         map.put("page", page);
     	return map;

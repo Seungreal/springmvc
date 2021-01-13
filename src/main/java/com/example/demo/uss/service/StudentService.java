@@ -51,7 +51,7 @@ public class StudentService{
     }
     public int count() {
     	var map = new HashMap<String,String>();
-    	map.put("COUNT_STUDENTS",Sql.COUNT.toString()+"students");
+    	map.put("COUNT_STUDENTS",Sql.TOTAL_COUNT.toString()+"students");
     	return studentMapper.count(map);
     }
     public List<Student> list(Pagination page){

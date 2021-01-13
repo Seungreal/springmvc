@@ -11,14 +11,11 @@ public class GradeService{
 	@Autowired GradeMapper gradeMapper;
 	@Autowired DummyGenerator dummy;
 	public int insertMany(int count) {
-		var list = new ArrayList<Grade>();
-		Grade g = null;
-		for(int i=0;i<count;i++) {
-			g= dummy.makeGrade();
-			g.setStuNum(i+1);
-			list.add(g);
+		for(int i=1;i<=count;i++) {
+			for(int j=1;j<=5;j++) {
+				gradeMapper.insert(dummy.makeGrade(i, j));
+			}
 		}
-    	int r= gradeMapper.insertMany(list);
-    	return r;
+    	return 0;
 	}
 }

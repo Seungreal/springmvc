@@ -1,6 +1,6 @@
 var mgr = mgr || {}
 mgr.access = x=>{
-	$.ajax({
+	/*$.ajax({
 		url: `${x}/managers/access`,
 		type: `post`,
 		data: JSON.stringify({
@@ -15,5 +15,6 @@ mgr.access = x=>{
 		error: (e)=>{
 			alert(`Fail`)
 		}
-	})
+	})*/
+	location.href = `${x}/mgr/index`
 }

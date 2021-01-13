@@ -28,7 +28,7 @@ stu.list = x=>{
 		.css({width: `100%`})
 		.appendTo(`#title`) 
 		$(`<tr/>`).attr({id: `tr_1`}).appendTo(`#tab`)
-		const arr = [`No`,`아이디`,`이름`,`생년월일`,`성별`,`등록일`,`전공과목`]
+		const arr = [`No`,`아이디`,`이름`,`생년월일`,`성별`,`등록일`,`담당매니저`]
 		$.each(arr, function(i,j){
 			$(`<th>${j}</th>`).css({backgroundColor: `gray`})
 			.appendTo(`#tr_1`)
@@ -40,7 +40,7 @@ stu.list = x=>{
 						<td>${j.birthday}</td>
 						<td>${j.gender}</td>
 						<td>${j.regDate}</td>
-						<td>${j.subject}</td></tr>`)
+						<td>${j.mgrNum}</td></tr>`)
 						.css({padding: `15px`, textAlign: `left`, fontSize: `medium`})
 						.appendTo(`#tab`)
 		})

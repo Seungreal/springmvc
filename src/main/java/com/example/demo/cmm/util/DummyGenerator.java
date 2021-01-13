@@ -115,6 +115,12 @@ public class DummyGenerator {
 		Collections.shuffle(sl);
 		return sl.get(0);
 	}
+	public int makeSubNum() {
+		List<Integer> sl = asList(1,2,3,4,5);
+		Collections.shuffle(sl);
+		return sl.get(0);
+	}
+	
 	public String makeEmail() {
 		List<String> ls = Arrays.asList("@test.com","@gmail.com","@naver.com");
 		Collections.shuffle(ls);
@@ -129,8 +135,8 @@ public class DummyGenerator {
 				,makeEmail(),Path.DEFAULT_PROFILE.toString());
 	}
 	public Student makeStudent() {
-		return new Student(0,makeUserid(),"1",makeUsername(),makeBirthday(),makeGender()
-				,makeRegdate(),makeSubject(),Path.DEFAULT_PROFILE.toString());
+		return new Student(0,1,makeUserid(),"1",makeUsername(),makeBirthday(),makeGender()
+				,makeRegdate(),Path.DEFAULT_PROFILE.toString());
 	}
 	/*******************************
 	 * Grade Dummy Date Generator
@@ -143,7 +149,7 @@ public class DummyGenerator {
 	public String makeExamdate() {
 		return "2020-11-30";
 	}
-	public Grade makeGrade() {
-		return new Grade(makeSubject(),makeExamdate(),makeScore().get(0));
+	public Grade makeGrade(int stuNum, int subNum) {
+		return new Grade(0,stuNum,subNum,makeScore().get(0),makeExamdate());
 	}
 }
