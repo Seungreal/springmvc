@@ -86,8 +86,7 @@ li a:hover:not(.active) {
 </head>
 <body>
 
-
-<jsp:include page="./sym/mgr/sidebar.jsp"/>
+<div><tiles:insertAttribute name="sidebar"/></div>
 
 
 <div style="margin-left:10%;padding:1px 16px;height:1000px;">

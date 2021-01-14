@@ -2,6 +2,29 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.sym.service.TeacherMapper">
+	<resultMap type="com.example.demo.sts.service.GradeVo" id="gradeMap">
+		<result property="grdNum" column="grdNum"/>
+		<result property="stuNum" column="stuNum"/>
+		<result property="score" column="score"/>
+		<result property="subject" column="subject"/>
+		<result property="grade" column="grade"/>
+		<result property="examDate" column="examDate"/>
+		<result property="passExam" column="passExam"/>
+		<result property="subNum" column="subNum"/>
+		<result property="teaNum" column="teaNum"/>
+		<result property="description" column="description"/>
+		<result property="teaName" column="teaName"/>
+		<result property="teaPassword" column="teaPassword"/>
+		<result property="email" column="email"/>
+		<result property="teaProfileImg" column="teaProfileImg"/>
+		<result property="userid" column="userid"/>
+		<result property="stuPassword" column="stuPassword"/>
+		<result property="stuName" column="stuName"/>
+		<result property="birthday" column="birthday"/>
+		<result property="gender" column="gender"/>
+		<result property="regDate" column="regDate"/>
+		<result property="stuProfileImg" column="stuProfileImg"/>
+	</resultMap>
 	<insert id="insert" parameterType="com.example.demo.sym.service.Teacher">
         insert into teachers(name,password,email,profile_img,sub_num) 
         values(#{name},#{password},#{email},#{profileImg},#{subNum})
@@ -28,4 +51,34 @@
         delete from teachers
         where tea_num like #{teaNum}
     </delete>
+    <select id="selectJoinAll" resultMap="gradeMap" parameterType="map">
+		select a.*,
+				t.tea_num teaNum,
+				t.name teaName,
+				t.password teaPassword,
+				t.profile_img teaProfileImg,
+				t.sub_num subNum
+		from (select g.grd_num grdNum, 
+					g.score score,
+					g.grade grade,
+					g.exam_date examDate,
+					g.pass_exam passExam,
+					j.sub_num sub_num,
+					j.subject subject,
+					j.description description,
+					s.userid userid,
+					s.password stuPassword,
+					s.name stuName,
+					s.birthday birthday,
+					s.gender gender,
+					s.reg_date regDate,
+					s.profile_img stuProfileImg,
+					s.stu_num stuNum
+			from grades g
+				join subjects j using (sub_num)
+				join students s using (stu_num)) a
+			join teachers t using (sub_num)
+		where a.examDate like #{examDate}
+			and t.sub_num like ${subNum}
+	</select>
 </mapper>

@@ -8,11 +8,11 @@ import lombok.Data;
 @Data @Component @ Lazy
 public class GradeVo {
 	// Grade
-	private int gradeNum,stuNum,score;
+	private int grdNum,stuNum,score;
 	private String subject, grade, examDate, passExam;
 	// Subject
 	private int subNum, teaNum;
-	private String desc;
+	private String description;
 	// Teacher
 	private String teaName,teaPassword,email,teaProfileImg;
 	// Student

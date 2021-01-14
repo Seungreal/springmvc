@@ -8,4 +8,7 @@
 			(#{i.subject},#{i.desc})
 		</foreach>
 	</insert>
+	<select id="selectAllSubject" resultType="string">
+		select subject from subjects;
+	</select>
 </mapper>

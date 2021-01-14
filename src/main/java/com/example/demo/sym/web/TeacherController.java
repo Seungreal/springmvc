@@ -1,8 +1,20 @@
 package com.example.demo.sym.web;
 
+import static com.example.demo.cmm.util.Util.integer;
+
+import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.*;
 
 import com.example.demo.cmm.enm.Messenger;
+import com.example.demo.cmm.enm.Table;
+import com.example.demo.cmm.util.Pagination;
+import com.example.demo.sts.service.GradeVo;
+import com.example.demo.sts.service.SubjectMapper;
 import com.example.demo.sym.service.Teacher;
 import com.example.demo.sym.service.TeacherMapper;
 import com.example.demo.sym.service.TeacherService;
@@ -23,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/teachers")
 public class TeacherController {
 	@Autowired TeacherMapper teacherMapper;
+	@Autowired SubjectMapper subjectMapper;
     @Autowired TeacherService teacherService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @PostMapping("")
@@ -51,4 +64,26 @@ public class TeacherController {
     public Messenger delete(@RequestBody Teacher t){
         return teacherService.delete(t)==1?Messenger.SUCCESS:Messenger.FAILURE;
     }
+    @GetMapping("/page/{pageSize}/{pageNum}/subject/{subNum}/{examDate}")
+    public Map<?,?> selectAllJoin(@PathVariable String examDate,@PathVariable String subNum,
+    							@PathVariable String pageSize,@PathVariable String pageNum){
+    	var map = new HashMap<>();
+    	map.put("examDate", examDate);
+    	map.put("subNum", subNum);
+    	List<GradeVo> list = teacherMapper.selectJoinAll(map);
+    	map.clear();
+    	IntSummaryStatistics is = list.stream().collect(summarizingInt(GradeVo::getScore));
+    	map.put("ls",is);
+    	map.put("subjects",subjectMapper.selectAllSubject().stream().collect(joining(",")));
+    	Optional<GradeVo> highscoreGrade = list.stream().collect(reducing((g1,g2)-> g1.getScore() > g2.getScore() ? g1 :g2));
+    	System.out.println(highscoreGrade);
+    	var page = new Pagination("", 
+				integer.apply(pageSize), 
+				integer.apply(pageNum),
+				list.size());
+    	map.put("list",teacherService.paging(list,page));
+    	map.put("page",page);
+    	return map;
+    }
+    
 }

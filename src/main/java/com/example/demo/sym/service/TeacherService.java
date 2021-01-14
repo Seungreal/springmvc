@@ -2,6 +2,8 @@
 package com.example.demo.sym.service;
 
 import static java.util.Arrays.asList;
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
@@ -9,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.cmm.util.DummyGenerator;
+import com.example.demo.cmm.util.Pagination;
+import com.example.demo.sts.service.GradeVo;
+import com.example.demo.uss.service.Student;
 
 @Service
 public class TeacherService {
@@ -25,6 +30,7 @@ public class TeacherService {
     	Teacher t = null;
     	for(int i=0;i<count;i++) {
     		t=dummy.makeTeacher();
+    		t.setSubNum(i);
     		teacherMapper.insert(t);
     	}
     }
@@ -44,4 +50,14 @@ public class TeacherService {
     public int delete(Teacher t) {
         return teacherMapper.delete(t);
     }
+
+	public List<GradeVo> paging(List<GradeVo> list, Pagination page) {
+		return list.stream()
+				.sorted(comparing(GradeVo::getStuNum))
+				.skip(page.getStartRow()-1)
+				.limit(page.getPageSize())
+				.collect(toList());
+	}
+
+	
 }
